@@ -2,8 +2,29 @@ class PostImage < ApplicationRecord
 
   #ActiveStrageで画像を扱えるようにするための記述
   has_one_attached:image
-  
+
   #アソシエーション　相手方が1なので、
   belongs_to:user
-  
+
+  #画像表示メソッド 対象のレコードのimageカラムにモノが入ってれば真  空なら偽で空画像表示
+  # def get_image
+  #   if image.attached?
+  #     image
+  #   else
+  #     'no_image.jpg'
+  #   end
+  # end
+
+  def get_image #画像取得メソッド
+
+    #対象レコードのimageカラムが空ならば(if文のelseのみ版みたいな感じ)
+    unless image.attached?
+      #ActiveStrageに、画像が存在しないとき用のno_image.jpgを登録
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      image.attach(io:File.open(file_path),filename:'default-image.jpg',content_type:'image/jpeg')
+    end
+    #imageカラムに投稿画像またはno_image.jpgが入ったので、imageカラムの内容を返す
+    image
+  end
+
 end
