@@ -1,9 +1,9 @@
 class PostImage < ApplicationRecord
 
-  #ActiveStrageで画像を扱えるようにするための記述
+  #ActiveStrageで画像を扱う宣言(?)　imageカラムを追加
   has_one_attached:image
 
-  #アソシエーション　相手方が1なので、
+  #アソシエーション　相手方が1なので、単数形で記述
   belongs_to:user
 
   #画像表示メソッド 対象のレコードのimageカラムにモノが入ってれば真  空なら偽で空画像表示
@@ -19,7 +19,7 @@ class PostImage < ApplicationRecord
 
     #対象レコードのimageカラムが空ならば(if文のelseのみ版みたいな感じ)
     unless image.attached?
-      #ActiveStrageに、画像が存在しないとき用のno_image.jpgを登録
+      #ActiveStrageに、画像が存在しないとき用のno_image.jpgをassetフォルダからrails側へ登録
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       image.attach(io:File.open(file_path),filename:'default-image.jpg',content_type:'image/jpeg')
     end
