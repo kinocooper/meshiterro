@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   #usersコントローラのアクションまとめ記述
-  resources:users,only:[:show,:edit]
+  resources:users,only:[:show,:edit,:update]
 
   #post_imagesコントローラのアクションまとめ記述
   resources:post_images,only:[:new,:index,:show,:create,:destroy]

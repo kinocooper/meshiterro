@@ -2,6 +2,10 @@
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image("100x100") %>
+  <% if @user == current_user %>
+    <!--引数 なんで@user.id じゃなくていいのかイマイチ不明 ルーディングのルールに合ってなくない？-->
+    <p><%= link_to "プロフィール編集",edit_user_path(@user) %></p>
+  <% end %>
 </div>
 
 
