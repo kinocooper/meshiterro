@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
+  #devise_for :users は、devise を使用する際に URL として users を含むことを示しています。
+  #自分で作ったusersコントローラのルート記述より上に書かないとログインできなくなる不具合あり！
+  devise_for :users
+
   #usersコントローラのアクションまとめ記述
   resources:users,only:[:show,:edit]
 
   #post_imagesコントローラのアクションまとめ記述
   resources:post_images,only:[:new,:index,:show,:create,:destroy]
 
-  #devise_for :users は、devise を使用する際に URL として users を含むことを示しています。
-  devise_for :users
 
   root to: 'homes#top'
 

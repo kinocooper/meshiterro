@@ -11,10 +11,10 @@ class User < ApplicationRecord
   has_one_attached:profile_image
 
 
-  def get_profile_image #プロフィール画像取得メソッド
+  def get_profile_image(size) #プロフィール画像取得メソッド
 
     #対象レコードのprofile_imageカラムが空ならば(if文のelseのみ版みたいな感じ)
-    unless profile_image attached?
+    unless profile_image.attached?
       #ActiveStrageに、画像が存在しないとき用のno_image.jpgをassetフォルダからrails側へ登録
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
       profile_image.attach(io:File.open(file_path),filename:'default-image.jpg',content_type:'image/jpeg')

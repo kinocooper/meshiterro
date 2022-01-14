@@ -3,7 +3,7 @@ class PostImage < ApplicationRecord
   #ActiveStrageで画像を扱う宣言(?)　imageカラムを追加
   has_one_attached:image
 
-  #アソシエーション　相手方が1なので、単数形で記述
+  #アソシエーション 相手方が1なので、単数形で記述
   belongs_to:user
 
   #画像表示メソッド 対象のレコードのimageカラムにモノが入ってれば真  空なら偽で空画像表示
