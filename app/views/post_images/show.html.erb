@@ -1,2 +1,16 @@
-<h1>PostImages#show</h1>
-<p>Find me in app/views/post_images/show.html.erb</p>
+<div>
+  <%= image_tag @post_image.get_image %>
+  <p>ショップ名：<%= @post_image.shop_name %></p>
+  <p>説明：<%= @post_image.caption %></p>
+  <!--user_idカラムでアソシエーションしてるUserモデルのnameカラムを呼び出し-->
+  <p>ユーザーネーム：<%= @post_image.user.name %></p>
+  <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+
+  <!--現在のユーザがこの投稿ユーザと同じであれば削除ボタンを表示-->
+  <% if @post_image.user == current_user %>
+    <%#= link_to "削除",post_image_path(@post_image.id),method: :delete %>
+    <!--post_image_pathにidを渡さないといけないので↑方が正しいかとおもったが…カリキュラム通り↓でちゃんと動作する-->
+    <%= link_to "削除",post_image_path(@post_image),method: :delete %>
+  <% end %>
+
+</div>
