@@ -3,8 +3,11 @@ class PostImage < ApplicationRecord
   #ActiveStrageで画像を扱う宣言(?)　imageカラムを追加
   has_one_attached:image
 
-  #アソシエーション 相手方が1なので、単数形で記述
+  #アソシエーション 
+  #相手方が1なので、単数形で記述
   belongs_to:user
+  #相手方がN個なので、複数形で記述、投稿が消えたら結びつくコメントも全削除
+  has_many:post_comments,depentend: :destroy
 
   #画像表示メソッド 対象のレコードのimageカラムにモノが入ってれば真  空なら偽で空画像表示
   # def get_image
