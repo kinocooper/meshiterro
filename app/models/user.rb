@@ -10,7 +10,6 @@ class User < ApplicationRecord
   #AvtiveStrageで画像を使うための宣言(?) profile_imageカラムを追加
   has_one_attached:profile_image
 
-
   def get_profile_image(size) #プロフィール画像取得メソッド
 
     #対象レコードのprofile_imageカラムが空ならば(if文のelseのみ版みたいな感じ)
