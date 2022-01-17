@@ -8,8 +8,13 @@ class PostImage < ApplicationRecord
   belongs_to:user
   #相手方がN個なので、複数形で記述、投稿が消えたら結びつくコメントも全削除
   has_many:post_comments,dependent: :destroy
-
+  #〃
   has_many:favorites,dependent: :destroy
+
+
+  #バリデーションチェック
+  validates:shop_name,presence:true
+  validates:image,presence:true
 
 
   def favorited_by?(user) # 引数で渡されたuserのidがFavoritesテーブル内に存在すればtrue、なければfalse

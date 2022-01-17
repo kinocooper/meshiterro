@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many:post_images,dependent: :destroy
   #Userから見てpost_commentsはN個⇒has_many 相手方がN個なので複数形で記述
   has_many:post_comments,dependent: :destroy
-
+  #
   has_many:favorites,dependent: :destroy
 
   def get_profile_image(size) #プロフィール画像取得メソッド

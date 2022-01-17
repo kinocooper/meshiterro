@@ -1,4 +1,17 @@
 <h1>_画像投稿フォーム</h1>
+
+<!--バリデーションエラーメッセージ-->
+<% if @post_image.errors.any? %>
+  <%= @post_image.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post_image.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+
 <%= form_with model:@post_image,local:true do |f| %>
 
   <h4>画像</h4>

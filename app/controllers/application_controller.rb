@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
 
+  # deviseのメソッド ログインせず他ページにアクセス⇒ログインページへ遷移。ただしtopページのぞく。
+  before_action:authenticate_user!, except:[:top]
+
   #deviseの機能が呼び出される直前に『configure_parmitted_parameters』メソッドを実行
   before_action:configure_parmitted_parameters, if: :devise_controller?
 
