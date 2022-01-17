@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   #post_imagesコントローラのアクションまとめ記述
   resources:post_images,only:[:new,:index,:show,:create,:destroy] do
     #ルーティングのネスト 正直よくわからん・・・
-    resources:post_comments,only:[:create]
+    resources:post_comments,only:[:create,:destroy]
   end
 
 

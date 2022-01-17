@@ -12,5 +12,29 @@
     <!--post_image_pathにidを渡さないといけないので↑方が正しいかとおもったが…カリキュラム通り↓でちゃんと動作する-->
     <%= link_to "削除",post_image_path(@post_image),method: :delete %>
   <% end %>
+</div>
 
+
+<div>
+  <!--この投稿に結びつくコメント(N)の数表示-->
+  <p>コメント件数：<%= @post_image.post_comments.count %></p>
+  <!--この投稿に結びつくコメント(N)からひとつづつpost_comment変数に排出-->
+  <% @post_image.post_comments.each do |post_comment| %>
+    <!--排出中のコメントにむずびつくユーザー(1)のプロフィール画像・ユーザー名・日時・コメントを取得-->
+    <p><%= image_tag post_comment.user.get_profile_image("100x100") %></p>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+
+    <% if post_comment.user == current_user %>
+      <%= link_to "削除",post_image_post_comment_path(post_comment.post_image,post_comment),method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <!---->
+  <%= form_with model:[@post_image,@post_comment],local:true do |f| %>
+    <%= f.text_area:comment,rows:'5',placeholder:"コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
 </div>
