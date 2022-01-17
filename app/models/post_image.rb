@@ -9,6 +9,13 @@ class PostImage < ApplicationRecord
   #相手方がN個なので、複数形で記述、投稿が消えたら結びつくコメントも全削除
   has_many:post_comments,dependent: :destroy
 
+  has_many:favorites,dependent: :destroy
+
+
+  def favorited_by?(user) # 引数で渡されたuserのidがFavoritesテーブル内に存在すればtrue、なければfalse
+    favorites.exists?(user_id:user.id)
+  end
+
   #画像表示メソッド 対象のレコードのimageカラムにモノが入ってれば真  空なら偽で空画像表示
   # def get_image
   #   if image.attached?

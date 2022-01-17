@@ -9,8 +9,12 @@ Rails.application.routes.draw do
 
   #post_imagesコントローラのアクションまとめ記述
   resources:post_images,only:[:new,:index,:show,:create,:destroy] do
-    #ルーティングのネスト 正直よくわからん・・・
+    #post_commentsコントローラのルーティング　ネストしてる。正直よくわからん・・・
     resources:post_comments,only:[:create,:destroy]
+    #favoritesコントローラのルーティング ※resourcesでないことに注目
+    resource:favorites,only:[:create,:destroy]
+  
+    
   end
 
 

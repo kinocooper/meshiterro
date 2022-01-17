@@ -4,14 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #AvtiveStrageで画像を使うための宣言(?) profile_imageカラムを追加
+  has_one_attached:profile_image
+
   #モデル間のアソシエーション
   #Userから見てpost_imagesはN個⇒has_many 相手方がN個なので複数形で記述
   has_many:post_images,dependent: :destroy
   #Userから見てpost_commentsはN個⇒has_many 相手方がN個なので複数形で記述
   has_many:post_comments,dependent: :destroy
 
-  #AvtiveStrageで画像を使うための宣言(?) profile_imageカラムを追加
-  has_one_attached:profile_image
+  has_many:favorites,dependent: :destroy
 
   def get_profile_image(size) #プロフィール画像取得メソッド
 
